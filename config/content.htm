@@ -545,7 +545,8 @@ return 1;
     gdImageDestroy(img);
     return 0;
 }</pre>
-<p><img alt="" height="300" src="/images/hellogd.png" width="400"/></p><h1>w12</h1>
+<p><img alt="" height="300" src="/images/hellogd.png" width="400"/></p>
+<h1>w12</h1>
 <h1>w13</h1>
 <pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">// 包含標準輸出入程式庫的標頭文件
 #include &lt;stdio.h&gt;
@@ -600,7 +601,253 @@ int main() {
 
     return 0;
 }</pre>
-<p><img alt="" height="200" src="/images/motion_plot.png" width="400"/></p><h1>Brython</h1>
+<p><img alt="" height="200" src="/images/motion_plot.png" width="400"/></p>
+<h1>ANSIC</h1>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false"># include &lt;stdio.h&gt;
+# include &lt;string.h&gt;
+
+int main()
+{
+    int n, x = 0;
+
+    printf("\n\n 检查给定的数字是否是丑陋数:\n");
+    printf("----------------------------------------------------\n");
+    printf("输入一个整数: ");
+    scanf("%d", &amp;n);
+
+    if (n &lt;= 0) 
+    {  
+        printf("请输入一个正确的数字。");  
+    }
+    while (n != 1) 
+    {  
+        if (n % 5 == 0) 
+        {  
+            n /= 5;  
+        } 
+        else if (n % 3 == 0) 
+        {  
+            n /= 3;  
+        } 
+        else if (n % 2 == 0) 
+        {  
+            n /= 2;  
+        } 
+        else 
+        {  
+            printf("这不是一个丑陋数。\n"); 
+            x = 1;  
+            break;  
+        }  
+    } 
+    if (x == 0) 
+    { 
+        printf("这是一个丑陋数。\n");
+    }
+}</pre>
+<p><img caption="false" height="148" src="/images/螢幕擷取畫面 2023-12-14 001646.png" width="400"/></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
+
+int main()  
+{
+    // 打印姓名
+    printf("姓名   : Alexandra Abramov\n"); 
+
+    // 打印出生日期
+    printf("出生日期 : 1975年7月14日\n"); 
+
+    // 打印手机号码
+    printf("手机号码 : 99-9999999999\n"); 
+
+    // 表示程序成功执行
+    return 0; 
+}</pre>
+<p><img alt="" height="102" src="/images/螢幕擷取畫面 2023-12-14 002345.png" width="232"/></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
+
+int reverse(int n) {
+    int d, y = 0;
+    while (n) {
+        d = n % 10;
+        if ((n &gt; 0 &amp;&amp; y &gt; (0x7fffffff - d) / 10) ||
+            (n &lt; 0 &amp;&amp; y &lt; ((signed)0x80000000 - d) / 10)) {
+            return 0;  
+        }
+        y = y * 10 + d;
+        n = n / 10;
+    }
+    return y;  
+}
+
+int main(void)
+{
+    int i = 123;
+    printf("原始整数: %d  ",i);
+    printf("\n反转后整数: %d  ",reverse(i));
+    i = 208478933;
+    printf("\n原始整数: %d  ",i);
+    printf("\n反转后整数: %d  ",reverse(i));
+    i = -73634;
+    printf("\n原始整数: %d  ",i);
+    printf("\n反转后整数: %d  ",reverse(i));
+    return 0;
+}</pre>
+<p><img alt="" height="137" src="/images/螢幕擷取畫面 2023-12-14 002450.png" width="293"/></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+
+int main ()
+{
+    char buffer[123]; // 定义一个字符数组 'buffer' 以存储用户输入
+    unsigned long ul; // 定义一个无符号长整型变量 'ul' 以存储转换后的值
+
+    // 打印一条消息，询问用户输入
+    printf("\n请输入一个无符号数：");
+
+    // 从标准输入读取用户输入，并将其存储在 'buffer' 中
+    fgets(buffer, 123, stdin);
+
+    // 使用基数0（自动检测）将 'buffer' 中的字符串转换为无符号长整型
+    ul = strtoul(buffer, NULL, 0);
+
+    // 打印转换后的值
+    printf("输出：%lu\n\n", ul);
+
+    return 0; // 表示程序成功执行
+}</pre>
+<p><img alt="" height="76" src="/images/螢幕擷取畫面 2023-12-14 002757.png" width="257"/></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include&lt;stdio.h&gt;      // 包含标准输入/输出头文件。
+#include&lt;stdlib.h&gt;     // 包含标准库头文件。
+
+int main ()          // 主函数开始。
+{
+    char input[] = "8.0 2.0";  // 声明一个字符数组 'input'，并用 "8.0 2.0" 初始化。
+    char *ptr_end;           // 声明一个指向字符的指针 'ptr_end'。
+
+    double x, y;              // 声明两个双精度浮点数变量 'x' 和 'y'。
+
+    x = strtod(input, &amp;ptr_end);   // 将 'input' 的第一部分转换为双精度浮点数，存储在 'x' 中，并更新 'ptr_end'。
+    y = strtod(ptr_end, NULL);     // 将 'input' 的剩余部分转换为双精度浮点数，存储在 'y' 中。
+
+    printf("\n输出= %.2lf\n\n", x / y);   // 打印 x/y 的结果，保留两位小数。
+
+    return 0;   // 返回0以表示程序成功执行。
+}   // 主函数结束。</pre>
+<p><img alt="" height="74" src="/images/螢幕擷取畫面 2023-12-14 002854.png" width="152"/></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include&lt;stdio.h&gt;     // 包含标准输入/输出头文件。
+#include&lt;stdlib.h&gt;    // 包含标准库头文件。
+#include&lt;time.h&gt;      // 包含时间头文件以生成随机数。
+
+int main ()           // 主函数的开始。
+{
+    int number, input;   // 声明两个整数变量 'number' 和 'input'。
+
+    srand ( time(NULL) );   // 使用当前时间初始化随机数种子。
+
+    number = rand() % 10 + 1;   // 生成一个介于1和10之间的随机数并将其存储在 'number' 中。
+
+    do {   // 开始一个do-while循环。
+        printf ("\n猜数字（1到10之间）：");   // 打印提示用户猜测数字的消息。
+        scanf ("%d", &amp;input);    // 读取用户的输入并将其存储在 'input' 中。
+
+        if (number &gt; input)   // 如果随机数大于用户的输入。
+            printf ("数字更大\n");   // 打印消息指示数字更大。
+
+    } while (number != input);   // 只要用户的输入不等于随机数，就继续循环。
+
+    printf ("猜对了！\n\n");   // 打印消息指示用户猜对了。
+
+    return 0;   // 返回0以表示程序成功执行。
+}   // 主函数结束。</pre>
+<p><img alt="" height="269" src="/images/螢幕擷取畫面 2023-12-14 005417.png" width="400"/></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
+
+// 函数声明
+int sum(int, int);
+
+int main(void)
+{
+    int total;
+
+    printf("\n\n 函数：一个简单的函数结构：\n");
+    printf("------------------------------------------------\n");
+
+    // 调用函数
+    total = sum(5, 6);
+
+    // 打印结果
+    printf("总和是：%d\n", total);
+
+    return 0;
+}
+
+// 函数定义
+int sum(int a, int b)
+{
+    int s;
+    s = a + b;
+    return s; // 函数返回值
+}</pre>
+<p><img alt="" height="114" src="/images/螢幕擷取畫面 2023-12-14 005543.png" width="399"/></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;  // 包含标准输入/输出头文件。
+
+int main() {
+    int i;
+
+    // 打印一个说明程序意图的消息
+    printf("前10个自然数是：\n");
+
+    // 循环遍历前10个自然数并逐个打印
+    for (i = 1; i &lt;= 10; i++) {
+        printf("%d ", i);
+    }
+
+    // 返回0以表示程序成功执行
+    return 0;
+}</pre>
+<p><img alt="" height="74" src="/images/螢幕擷取畫面 2023-12-14 005703.png" width="280"/></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include&lt;stdio.h&gt;
+
+int numPrint(int);
+
+int main()
+{
+    int n = 1;
+
+    printf("\n\n 递归：打印前50个自然数：\n");
+    printf("--------------------------------------\n");
+    printf(" 自然数为：");
+    
+    numPrint(n);
+
+    printf("\n\n");
+    return 0;
+}
+
+int numPrint(int n)
+{
+    if(n &lt;= 50)
+    {
+        printf(" %d ", n);
+        numPrint(n + 1);
+    }
+}</pre>
+<p><img alt="" height="100" src="/images/螢幕擷取畫面 2023-12-14 005842.png" width="400"/></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;   // 包含标准输入/输出头文件。
+
+void main()
+{
+    int int1, int2;   // 声明两个整数变量 'int1' 和 'int2'。
+
+    printf("输入 Number1 和 Number2 的值 : ");   // 提示用户输入 Number1 和 Number2 的值。
+    scanf("%d %d", &amp;int1, &amp;int2);   // 读取用户输入并将其存储在 'int1' 和 'int2' 中。
+
+    if (int1 == int2)   // 检查 Number1 是否等于 Number2。
+        printf("Number1 和 Number2 相等\n");   // 如果 Number1 和 Number2 相等，则打印消息。
+    else
+        printf("Number1 和 Number2 不相等\n");   // 如果 Number1 和 Number2 不相等，则打印消息。
+}</pre>
+<p><img alt="" height="139" src="/images/螢幕擷取畫面 2023-12-14 005948.png" width="400"/></p><h1>Brython</h1>
 <p><a href="https://en.wikipedia.org/wiki/Python_(programming_language)">https://en.wikipedia.org/wiki/Python_(programming_language)</a></p>
 <h4>Examples:</h4>
 <p style="padding-left: 30px;"><a href="https://gist.github.com/mdecycu/d9082d678096bd58378d6afe2c7fa05d">https://gist.github.com/mdecycu/d9082d678096bd58378d6afe2c7fa05d</a></p>

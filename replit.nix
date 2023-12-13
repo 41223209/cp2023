@@ -1,11 +1,13 @@
 { pkgs }: {
     deps = [
-  pkgs.qtile
-  pkgs.sudo
-  pkgs.clang_12
-        pkgs.ccls
-        pkgs.gdb
-        pkgs.gnumake
-        pkgs.gnuplot
+      pkgs.libev
+      pkgs.gnuplot
+      pkgs.ncurses.dev
+      pkgs.gd
     ];
+  env = {
+    PYTHON_LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [
+      pkgs.libev
+    ];
+  };
 }
