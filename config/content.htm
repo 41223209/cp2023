@@ -847,7 +847,138 @@ void main()
     else
         printf("Number1 和 Number2 不相等\n");   // 如果 Number1 和 Number2 不相等，则打印消息。
 }</pre>
-<p><img alt="" height="139" src="/images/螢幕擷取畫面 2023-12-14 005948.png" width="400"/></p><h1>Brython</h1>
+<p><img alt="" height="139" src="/images/螢幕擷取畫面 2023-12-14 005948.png" width="400"/></p>
+<h1>c_ex</h1>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
+
+int main() {
+    char ch;
+
+    printf("Input a char: ");
+    scanf("%c", &amp;ch);
+
+    if (ch == 'a') {
+        printf("You pressed 'a'\n");
+    }
+
+    return 0;
+}</pre>
+<p><img alt="" height="140" src="/images/螢幕擷取畫面 2023-12-14 135305.png" width="400"/></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
+void main()
+{
+int i, j;
+j = 10; /* 迴圈外先設定初值 */
+for ( i = 0; i &lt; 6; i++ )
+{
+printf( "i = %d, ", i );
+printf( "j = %d \n", j );
+j++; /* 迴圈後加上變更運算式 */
+}
+}</pre>
+<p><img alt="" height="192" src="/images/螢幕擷取畫面 2023-12-14 134939.png" width="261"/></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
+int main()
+{
+/* 印出 Hello World! Bye Bye */
+printf("Hello World! "); printf("Bye "); printf("Bye");
+return 0;
+}
+</pre>
+<p><img alt="" height="96" src="/images/螢幕擷取畫面 2023-12-14 135912.png" width="407"/></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
+int main()
+{
+int a = 1;
+int A = 8;
+int b = 2, c;
+c = A - a + b;
+/* 輸出 a, A, b, c 到螢幕 */
+printf( "a = %d, A = %d, b = %d, c = %d ", a, A, b, c );
+return 0;
+}</pre>
+<p><img alt="" height="85" src="/images/螢幕擷取畫面 2023-12-14 140125.png" width="326"/></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
+int main()
+{
+char x, y;
+x = 'a';
+y = (char)97;
+/* 輸出 x, y, x, 最後一個是以 ASCII 值顯示 y */
+printf( " x = %c, y = %c, ASCII of y = %d", x, y, y );
+return 0;
+}</pre>
+<p><img alt="" height="90" src="/images/螢幕擷取畫面 2023-12-14 140551.png" width="372"/></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include&lt;stdio.h&gt;
+int main()
+{
+int a,b;
+a = 10; b = 3;
+printf( "%d \n", a * b );
+printf( "%d \n", a / b );
+printf( "%d \n", a + b );
+printf( "%d \n", a - b );
+printf( "%d \n", a % b );
+return 0;
+}
+</pre>
+<p><img alt="" height="168" src="/images/螢幕擷取畫面 2023-12-14 141153.png" width="247"/></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
+int main()
+{
+int a = 10, b = 5;
+printf( " a == b is %d \n", a == b );
+printf( " a &gt; b is %d \n", a &gt; b );
+printf( " a &lt; b is %d \n", a &lt; b );
+printf( " a &gt;= b is %d \n", a &gt;= b );
+printf( " a &lt;= b is %d \n", a &lt;= b );
+printf( " a != b is %d \n", a != b );
+printf( "\n" );
+b = 10;
+printf( " a == b is %d \n", a == b );
+printf( " a &gt; b is %d \n", a &gt; b );
+printf( " a &lt; b is %d \n", a &lt; b );
+printf( " a &gt;= b is %d \n", a &gt;= b );
+printf( " a &lt;= b is %d \n", a &lt;= b );
+printf( " a != b is %d \n", a != b );
+return 0;
+}</pre>
+<p><img alt="" height="362" src="/images/螢幕擷取畫面 2023-12-14 141345.png" width="318"/></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include&lt;stdio.h&gt;
+void main()
+{
+int a,b;
+a = 15;
+b = 1;
+printf("%d \n", a | b ); /* a OR b */
+printf("%d \n", a &amp; b ); /* a AND b */
+printf("%d \n", a ^ b ); /* a XOR b */
+printf("%d \n", a &lt;&lt; 1 ); /* a 位元左移 1 位 */
+printf("%d \n", a &gt;&gt; 1 ); /* a 位元右移一位 */
+printf("%d \n", ~a ); /* A 的補數運算 */
+}</pre>
+<p><img alt="" height="190" src="/images/螢幕擷取畫面 2023-12-14 141703.png" width="284"/></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
+/* read and display a number */
+int main () {
+ char c;
+ printf("Enter character: ");
+ c = getchar(); /* read the character in */
+ printf("Character entered: ");
+ putchar(c); /* write the character */
+ return(0);
+}</pre>
+<p><img alt="" height="101" src="/images/螢幕擷取畫面 2023-12-14 141908.png" width="258"/></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
+void main()
+{
+int a;
+a = 3;
+printf("%d\n", !a );
+a = 0;
+printf("%d\n", !a );
+}</pre>
+<p><img alt="" height="90" src="/images/螢幕擷取畫面 2023-12-14 142052.png" width="264"/></p><h1>Brython</h1>
 <p><a href="https://en.wikipedia.org/wiki/Python_(programming_language)">https://en.wikipedia.org/wiki/Python_(programming_language)</a></p>
 <h4>Examples:</h4>
 <p style="padding-left: 30px;"><a href="https://gist.github.com/mdecycu/d9082d678096bd58378d6afe2c7fa05d">https://gist.github.com/mdecycu/d9082d678096bd58378d6afe2c7fa05d</a></p>
