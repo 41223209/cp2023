@@ -158,6 +158,7 @@ int main() {
     return 0;
 }</pre>
 <p><img alt="" height="140" src="./../images/螢幕擷取畫面 2023-12-14 135305.png" width="400"/></p>
+<p></p>
 <pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
 void main()
 {
@@ -171,6 +172,7 @@ j++; /* 迴圈後加上變更運算式 */
 }
 }</pre>
 <p><img alt="" height="192" src="./../images/螢幕擷取畫面 2023-12-14 134939.png" width="261"/></p>
+<p></p>
 <pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
 int main()
 {
@@ -180,6 +182,7 @@ return 0;
 }
 </pre>
 <p><img alt="" height="96" src="./../images/螢幕擷取畫面 2023-12-14 135912.png" width="407"/></p>
+<p></p>
 <pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
 int main()
 {
@@ -192,6 +195,7 @@ printf( "a = %d, A = %d, b = %d, c = %d ", a, A, b, c );
 return 0;
 }</pre>
 <p><img alt="" height="85" src="./../images/螢幕擷取畫面 2023-12-14 140125.png" width="326"/></p>
+<p></p>
 <pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
 int main()
 {
@@ -203,6 +207,7 @@ printf( " x = %c, y = %c, ASCII of y = %d", x, y, y );
 return 0;
 }</pre>
 <p><img alt="" height="90" src="./../images/螢幕擷取畫面 2023-12-14 140551.png" width="372"/></p>
+<p></p>
 <pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include&lt;stdio.h&gt;
 int main()
 {
@@ -217,6 +222,7 @@ return 0;
 }
 </pre>
 <p><img alt="" height="168" src="./../images/螢幕擷取畫面 2023-12-14 141153.png" width="247"/></p>
+<p></p>
 <pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
 int main()
 {
@@ -238,6 +244,7 @@ printf( " a != b is %d \n", a != b );
 return 0;
 }</pre>
 <p><img alt="" height="362" src="./../images/螢幕擷取畫面 2023-12-14 141345.png" width="318"/></p>
+<p></p>
 <pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include&lt;stdio.h&gt;
 void main()
 {
@@ -252,17 +259,7 @@ printf("%d \n", a &gt;&gt; 1 ); /* a 位元右移一位 */
 printf("%d \n", ~a ); /* A 的補數運算 */
 }</pre>
 <p><img alt="" height="190" src="./../images/螢幕擷取畫面 2023-12-14 141703.png" width="284"/></p>
-<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
-/* read and display a number */
-int main () {
- char c;
- printf("Enter character: ");
- c = getchar(); /* read the character in */
- printf("Character entered: ");
- putchar(c); /* write the character */
- return(0);
-}</pre>
-<p><img alt="" height="101" src="./../images/螢幕擷取畫面 2023-12-14 141908.png" width="258"/></p>
+<p></p>
 <pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
 void main()
 {
@@ -273,7 +270,149 @@ a = 0;
 printf("%d\n", !a );
 }</pre>
 <p><img alt="" height="90" src="./../images/螢幕擷取畫面 2023-12-14 142052.png" width="264"/></p>
-<br />ANSIC << <a href='ANSIC.html'>Previous</a> <a href='Brython.html'>Next</a> >> Brython</div>
+<p></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
+void main()
+{
+char c;
+printf( "Input a char:" );
+scanf( "%c", &amp;c );
+switch( c )
+{
+case 'a':
+printf(" you pressed a ");
+break;
+case 'b':
+printf(" you pressed b ");
+break;
+case 'c':
+printf(" you pressed c ");
+break;
+default:
+printf(" not a, b, c ");
+break;
+}
+}</pre>
+<p><img alt="" height="176" src="./../images/螢幕擷取畫面 2023-12-21 130243.png" width="400"/></p>
+<p></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
+/* 讀取並顯示一個數字 */
+int main () {
+ char c;
+ printf("Enter character: ");
+ c = getchar(); /* 讀取其中的字符 */
+ printf("Character entered: ");
+ putchar(c); /* 寫出這個字符 */
+ return(0);
+}</pre>
+<p><code class="cpp functions bold"><img alt="" height="101" src="./../images/螢幕擷取畫面 2023-12-14 141908.png" width="258"/><br/></code></p>
+<p><code class="cpp functions bold"></code></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#define _CRT_SECURE_NO_WARNINGS
+#include&lt;stdio.h&gt;
+/* 演示一個for循環 */
+main()
+{
+ float this_is_a_number, total;
+ int i;
+ total = 0;
+ /* forloop 迴圈 10 次 */
+ for (i = 0;i &lt; 10;i++)
+ {
+ printf("Please enter a number:\n ");
+ scanf("%f", &amp;this_is_a_number); /* 讀取數字 */
+ total = total + this_is_a_number;
+ }
+ printf("Total Sum is = %f\n", total);
+}</pre>
+<p><img alt="" height="451" src="./../images/螢幕擷取畫面 2023-12-21 130717.png" width="400"/></p>
+<p></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
+/* if 運算範例 */
+int main()
+{
+ int this_is_a_number;
+ printf( "Please enter an integer between 1 and 10:\n " );
+ scanf( "%d", &amp;this_is_a_number );
+ if (this_is_a_number &lt;6)
+ printf( "This number is less than 6;\n " );
+ printf( "Please enter an integer between 10 and 20:\n " );
+ scanf( "%d", &amp;this_is_a_number );
+ if (this_is_a_number &lt;16)
+ printf( "This number is less than 16\n " );
+ else
+ printf( "This number is greater than 15\n " );
+ return 0;
+}</pre>
+<p><img alt="" height="296" src="./../images/螢幕擷取畫面 2023-12-21 131206.png" width="400"/></p>
+<p></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#define _CRT_SECURE_NO_WARNINGS
+#include &lt;stdio.h&gt;
+/* if then else if 操作的範例 */
+int main()
+{
+ int this_is_a_number;
+ printf("Please enter an integer between 1 and 10:\n ");
+ scanf("%d", &amp;this_is_a_number);
+ if (this_is_a_number &lt; 6)
+ printf("This number is less than 6;\n ");
+ printf("Please enter an integer between 10 and 20:\n ");
+ scanf("%d", &amp;this_is_a_number);
+ if (this_is_a_number &lt; 16)
+ {
+ printf("This number is less than 16\n ");
+ }
+ else if (this_is_a_number == 20)
+ {
+ printf("This number is 20\n ");
+ }
+ else
+ {
+ printf("This number is greater than 15\n ");
+ }
+ return 0;
+}</pre>
+<p><img alt="" height="277" src="./../images/螢幕擷取畫面 2023-12-21 131353.png" width="400"/></p>
+<p></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">/* 返回答案的函數 */
+/* 尋找學校一年中得分最高的學生 */
+#include &lt;stdio.h&gt;
+double getmarks(double pupils[]);
+int main()
+{
+ double pupil;
+ /* 帶有班級標記的數組已預設在主要部分中
+程式 */
+ double marks[] = { 10.6, 23.7, 67.9, 93.0, 64.2, 33.8 ,57.5 ,82.2
+,50.7 ,45.7 };
+ /* Call function getmarks. The function returns the max marks which
+is then stored in pupil */
+ pupil = getmarks(marks);
+ printf("Max mark is = %f", pupil);
+ return 0;
+}
+double getmarks(double pupils[])
+{
+ int i;
+ double highest;
+ highest = 0;
+ /* 依序檢查所有學生並儲存最高分 */
+ for (i = 0; i &lt; 6; ++i)
+ {
+ if (highest &lt; pupils[i])
+ highest = pupils[i];
+ }
+ return highest; /* 傳回函數所在位置的最高值
+被稱為*/
+}</pre>
+<p><img alt="" height="72" src="./../images/螢幕擷取畫面 2023-12-21 131833.png" width="400"/></p>
+<p></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">/* 這是我的第一個C程序*/
+int main()
+{
+ printf("My first program\n");
+ return(0);
+}</pre>
+<p><img alt="" height="296" src="./../images/螢幕擷取畫面 2023-12-21 132527.png" width="400"/><br/><br/></p><br />ANSIC << <a href='ANSIC.html'>Previous</a> <a href='Brython.html'>Next</a> >> Brython</div>
         
     <!-- footer -->
       <div class="container">
