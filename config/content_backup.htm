@@ -47,7 +47,7 @@ int main() {
 <p>clear</p>
 <p>cd downloads</p>
 <p>cc gnuplot_ex1.c</p>
-<p>./a.out</p>
+<p>./a.out </p>
 <p><img alt="" height="200" src="/images/gnuplot_ex1.png" width="400"/></p>
 <p></p>
 <pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
@@ -1521,6 +1521,26 @@ void draw_roc_flag(gdImagePtr img) {
 <p><video controls="controls" height="630" width="1008">
 <source src="/images/大一上期末考.mp4" type="video/mp4"/></video></p>
 <h1>w16</h1>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
+
+int main() {
+    FILE *gnuplotPipe = popen("gnuplot", "w");
+    if (gnuplotPipe) {
+        fprintf(gnuplotPipe, "set terminal png\n");
+        fprintf(gnuplotPipe, "set output 'motion_plot.png'\n");
+        fprintf(gnuplotPipe, "set xlabel 'Time'\n");
+        fprintf(gnuplotPipe, "set ylabel 'Position / Velocity'\n");
+        fprintf(gnuplotPipe, "plot 'motion_data.txt' using 1:2 with lines title 'm1 position', 'motion_data.txt' using 1:3 with lines title 'm2 position', 'motion_data.txt' using 1:4 with lines title 'm1 velocity', 'motion_data.txt' using 1:5 with lines title 'm2 velocity'\n");
+        fprintf(gnuplotPipe, "exit\n");
+        fflush(gnuplotPipe);
+        pclose(gnuplotPipe);
+    } else {
+        printf("Error opening pipe to Gnuplot.\n");
+    }
+    return 0;
+}
+</pre>
+<p><img alt="" height="300" src="/images/motion_plot.png" width="400"/></p>
 <h1>ANSIC</h1>
 <h4>檢查給定的數字是否為醜數</h4>
 <pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false"># include &lt;stdio.h&gt;
@@ -1813,9 +1833,361 @@ int main() {
 </pre>
 <p><img alt="" height="128" src="/images/螢幕擷取畫面 2023-12-21 002814.png" width="400"/></p>
 <p></p>
+<h4>基本堆操作 - 插入、刪除、顯示</h4>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;          // 包含 printf 函數的標準輸入/輸出庫
+#include &lt;stdlib.h&gt;         // 包含動態記憶體分配的標準庫
+
+#define MAX_HEAP_SIZE 100   // 定義堆的最大大小
+
+// 表示堆的結構
+struct Heap {
+    int arr[MAX_HEAP_SIZE]; // 儲存堆元素的數組
+    int size;               // 堆的當前大小
+};
+
+// 交換堆中兩個元素的函數
+void swap(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+// 插入元素後維護最大堆屬性的函數
+void heapifyUp(struct Heap *heap, int index) {
+    int parent = (index - 1) / 2;  // 計算父索引
+
+    // 向上移動堆，直到恢復最大堆屬性
+    while (index &gt; 0 &amp;&amp; heap-&gt;arr[index] &gt; heap-&gt;arr[parent]) {
+        swap(&amp;heap-&gt;arr[index], &amp;heap-&gt;arr[parent]);  // 將目前節點與其父節點交換
+        index = parent;
+        parent = (index - 1) / 2;  // 更新父索引
+    }
+}
+
+// 在堆中插入元素的函數
+void insert(struct Heap *heap, int key) {
+    if (heap-&gt;size &gt;= MAX_HEAP_SIZE) {
+        printf("Heap overflow\n");   // 如果堆已滿，則顯示錯誤訊息
+        return;
+    }
+
+    heap-&gt;arr[heap-&gt;size] = key;     // 將鍵插入堆的末尾
+    heap-&gt;size++;                    // 增加堆的大小
+    heapifyUp(heap, heap-&gt;size - 1);  // 恢復最大堆屬性
+}
+
+// 刪除元素後維護最大堆屬性的函數
+void heapifyDown(struct Heap *heap, int index) {
+    int leftChild = 2 * index + 1;   // 計算左子索引
+    int rightChild = 2 * index + 2;  // 計算右子索引
+    int largest = index;              // 假設當前節點是最大的
+
+    // 求當前節點、左子節點、右子節點中最大的元素
+    if (leftChild &lt; heap-&gt;size &amp;&amp; heap-&gt;arr[leftChild] &gt; heap-&gt;arr[largest]) {
+        largest = leftChild;
+    }
+
+    if (rightChild &lt; heap-&gt;size &amp;&amp; heap-&gt;arr[rightChild] &gt; heap-&gt;arr[largest]) {
+        largest = rightChild;
+    }
+
+    // 如果最大的元素不是當前節點，則與最大的子節點交換並繼續向下堆
+    if (largest != index) {
+        swap(&amp;heap-&gt;arr[index], &amp;heap-&gt;arr[largest]);
+        heapifyDown(heap, largest);
+    }
+}
+
+// 從堆中刪除根元素（最大元素）的函數
+int deleteMax(struct Heap *heap) {
+    if (heap-&gt;size &lt;= 0) {
+        printf("Heap underflow\n");  // 如果堆為空，則顯示錯誤訊息
+        return -1;                   // 返回-1表示錯誤或空堆
+    }
+
+    int maxElement = heap-&gt;arr[0];   // 儲存最大元素
+    heap-&gt;arr[0] = heap-&gt;arr[heap-&gt;size - 1];  // 將根替換為最後一個元素
+    heap-&gt;size--;                    // 減小堆的大小
+
+    heapifyDown(heap, 0);            // 從根恢復最大堆屬性
+
+    return maxElement;               // 傳回刪除的最大元素
+}
+
+// 顯示堆元素的函數
+void display(struct Heap *heap) {
+    printf("Heap elements: ");
+    for (int i = 0; i &lt; heap-&gt;size; i++) {
+        printf("%d ", heap-&gt;arr[i]);  // 列印堆中的每個元素
+    }
+    printf("\n");
+}
+
+int main() {
+    struct Heap heap;                 // 聲明堆結構
+    heap.size = 0;                    // 初始化堆大小
+
+    // 測試插入操作
+    insert(&amp;heap, 100);
+    insert(&amp;heap, 200);
+    insert(&amp;heap, 150);
+    insert(&amp;heap, 400);
+    insert(&amp;heap, 500);
+
+    // 顯示堆疊
+    display(&amp;heap);
+
+    // 測試刪除操作
+    int maxElement = deleteMax(&amp;heap);
+    if (maxElement != -1) {
+        printf("Deleted max element: %d\n", maxElement);
+    }
+
+    // 顯示更新後的堆
+    display(&amp;heap);
+
+    return 0;                         // 返回0表示執行成功
+}
+</pre>
+<p><img alt="" height="99" src="/images/螢幕擷取畫面 2023-12-30 013255.png" width="282"/></p>
+<p></p>
+<h4>從隨機數組和排序數組構造最大堆</h4>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;          // 包含 printf 函數的標準輸入/輸出庫
+#include &lt;stdlib.h&gt;         // 包含動態記憶體分配的標準庫
+
+#define MAX_HEAP_SIZE 100   // 定義堆的最大大小
+
+// 交換堆中兩個元素的函數
+void swap(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+// 插入元素後維護最大堆屬性的函數
+void heapifyDown(int arr[], int size, int index) {
+    int leftChild = 2 * index + 1;   // 計算左子索引
+    int rightChild = 2 * index + 2;  // 計算右子索引
+    int largest = index;              // 假設當前節點是最大的
+
+    // 求當前節點、左子節點、右子節點中最大的元素
+    if (leftChild &lt; size &amp;&amp; arr[leftChild] &gt; arr[largest]) {
+        largest = leftChild;
+    }
+
+    if (rightChild &lt; size &amp;&amp; arr[rightChild] &gt; arr[largest]) {
+        largest = rightChild;
+    }
+
+    // 如果最大的元素不是當前節點，則與最大的子節點交換並繼續向下堆
+    if (largest != index) {
+        swap(&amp;arr[index], &amp;arr[largest]);
+        heapifyDown(arr, size, largest);
+    }
+}
+
+// 從數組建立最大堆的函數
+void buildMaxHeap(int arr[], int size) {
+    // 從最後一個非葉節點開始，向下堆化到根
+    for (int i = size / 2 - 1; i &gt;= 0; i--) {
+        heapifyDown(arr, size, i);
+    }
+}
+
+// 顯示數組元素的函數
+void display(int arr[], int size) {
+    printf("Array elements: ");
+    for (int i = 0; i &lt; size; i++) {
+        printf("%d ", arr[i]);  // 列印數組中的每個元素
+    }
+    printf("\n");
+}
+
+int main() {
+    // 使用隨機數組進行測試
+    int randomArray[] = {6, 8, 12, 7, 1};               // 聲明一個隨機數組
+    int randomSize = sizeof(randomArray) / sizeof(randomArray[0]);  // 計算數組的大小
+
+    printf("Original Random Array:\n");
+    display(randomArray, randomSize);  // 顯示原始隨機數組
+
+    // 從隨機數組建立最大堆
+    buildMaxHeap(randomArray, randomSize);
+
+    printf("Max Heap from Random Array:\n");
+    display(randomArray, randomSize);  // 顯示隨機數組中的最大堆
+
+    // 使用排序數組進行測試
+    int sortedArray[] = {19, 12, 8, 6, 2};              // 聲明一個排序數組
+    int sortedSize = sizeof(sortedArray) / sizeof(sortedArray[0]);  // 計算數組的大小
+
+    printf("\nOriginal Sorted Array:\n");
+    display(sortedArray, sortedSize);  // 顯示原始排序數組
+
+    // 從排序數組建立最大堆
+    buildMaxHeap(sortedArray, sortedSize);
+
+    printf("Max Heap from Sorted Array:\n");
+    display(sortedArray, sortedSize);  // 顯示排序數組中的最大堆
+
+    return 0;                         // 返回0表示執行成功
+}
+</pre>
+<p><img alt="" height="180" src="/images/螢幕擷取畫面 2023-12-30 014533.png" width="234"/></p>
+<p></p>
+<h4>從隨機數組和排序數組構造最小堆</h4>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
+
+// 用於堆化以節點 i 為根的子樹的函數，該節點是 arr[] 中的索引
+void minHeapify(int arr[], int n, int i) {
+    int smallest = i;  // 將最小的初始化為 root
+    int left = 2 * i + 1;  // 左子節點
+    int right = 2 * i + 2; // 右子節點
+
+    // 如果左子節點小於根
+    if (left &lt; n &amp;&amp; arr[left] &lt; arr[smallest])
+        smallest = left;
+
+    // 如果右子節點小於目前為止最小的子節點
+    if (right &lt; n &amp;&amp; arr[right] &lt; arr[smallest])
+        smallest = right;
+
+    // 如果最小的不是根
+    if (smallest != i) {
+        // 將找到的最小元素與根交換
+        int temp = arr[i];
+        arr[i] = arr[smallest];
+        arr[smallest] = temp;
+
+        // 遞歸地堆化受影響的子樹
+        minHeapify(arr, n, smallest);
+    }
+}
+
+// 從數組建立最小堆的函數
+void buildMinHeap(int arr[], int n) {
+    // 從最後一個非葉子節點開始，以相反的順序堆疊所有節點
+    for (int i = n / 2 - 1; i &gt;= 0; i--)
+        minHeapify(arr, n, i);
+}
+
+// 列印數組的函數
+void printArray(int arr[], int n) {
+    for (int i = 0; i &lt; n; ++i)
+        printf("%d ", arr[i]);
+    printf("\n");
+}
+
+// 測試堆構造函數
+int main() {
+    // 使用隨機數組進行測試
+    int randomArray[] = {4, 10, 3, 5, 1};
+    int n1 = sizeof(randomArray) / sizeof(randomArray[0]);
+
+    printf("Original Random Array: ");
+    printArray(randomArray, n1);
+
+    // 建構堆
+    buildMinHeap(randomArray, n1);
+
+    printf("Min Heap from Random Array: ");
+    printArray(randomArray, n1);
+
+    printf("\n");
+
+    // 使用排序數組進行測試
+    int sortedArray[] = {8, 7, 5, 4, 2};
+    int n2 = sizeof(sortedArray) / sizeof(sortedArray[0]);
+
+    printf("Original Sorted Array: ");
+    printArray(sortedArray, n2);
+
+    // 建構堆
+    buildMinHeap(sortedArray, n2);
+
+    printf("Min Heap from Sorted Array: ");
+    printArray(sortedArray, n2);
+
+    return 0;
+}
+</pre>
+<p><img alt="" height="112" src="/images/螢幕擷取畫面 2023-12-30 015120.png" width="319"/></p>
+<p></p>
+<h4>使用最大堆實現堆排序</h4>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
+
+// 用於堆化以節點 i 為根的子樹的函數，該子樹是 arr[] 中的索引
+void maxHeapify(int arr[], int n, int i) {
+    int largest = i;  // Initialize largest as root
+    int left = 2 * i + 1;  // left child
+    int right = 2 * i + 2; // right child
+
+    // 如果左子節點大於根
+    if (left &lt; n &amp;&amp; arr[left] &gt; arr[largest])
+        largest = left;
+
+    // 如果右子節點大於迄今為止最大的子節點
+    if (right &lt; n &amp;&amp; arr[right] &gt; arr[largest])
+        largest = right;
+
+    // 如果最大的不是根
+    if (largest != i) {
+        // Swap the found largest element with the root
+        int temp = arr[i];
+        arr[i] = arr[largest];
+        arr[largest] = temp;
+
+        // 遞歸地堆化受影響的子樹
+        maxHeapify(arr, n, largest);
+    }
+}
+
+// 對數組執行堆排序的函數
+void heapSort(int arr[], int n) {
+    // 建造最大堆
+    for (int i = n / 2 - 1; i &gt;= 0; i--)
+        maxHeapify(arr, n, i);
+
+    // 從堆中一一提取元素
+    for (int i = n - 1; i &gt; 0; i--) {
+        // 將根（最大元素）與最後一個元素交換
+        int temp = arr[0];
+        arr[0] = arr[i];
+        arr[i] = temp;
+
+        // 在減少的堆上呼叫 maxHeapify
+        maxHeapify(arr, i, 0);
+    }
+}
+
+// 列印數組的函數
+void printArray(int arr[], int n) {
+    for (int i = 0; i &lt; n; ++i)
+        printf("%d ", arr[i]);
+    printf("\n");
+}
+
+int main() {
+    // 測試陣列
+    int array[] = {14, 10, 0, 9, 15, 5, 7};
+    int n = sizeof(array) / sizeof(array[0]);
+
+    printf("Original Array: ");
+    printArray(array, n);
+
+    // 執行堆疊排序
+    heapSort(array, n);
+
+    printf("Sorted Array: ");
+    printArray(array, n);
+
+    return 0;
+}
+</pre>
+<p><img alt="" height="63" src="/images/螢幕擷取畫面 2023-12-30 015707.png" width="265"/></p>
+<p></p>
 <p><video controls="controls" height="630" width="1008">
-<source src="/images/ANSIC練習.mp4" type="video/mp4"/></video></p>
-<h1>c_ex</h1>
+<source src="/images/ANSIC練習.mp4" type="video/mp4"/></video></p><h1>c_ex</h1>
 <pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
 
 int main() {
