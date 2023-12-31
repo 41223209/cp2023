@@ -3295,7 +3295,41 @@ printf("%d and %d are equal\n", a,b);
 }</pre>
 <p><img alt="" height="430" src="/images/螢幕擷取畫面 2023-12-31 175739.png" width="400"/></p>
 <p></p>
-<p></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#define _CRT_SECURE_NO_WARNINGS
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+/* 示範字串操作的程式 strlen、strcpy、strcat、strcmp*/
+int main() {
+char borrow[7] = { 'b', 'o', 'r', 'r', 'o', 'w','\0' };
+char string1[32] = "This is string1";
+char string2[16] = "This is string2";
+char string3[16];
+int len;
+/* 列印出字串的長度 */
+  len = strlen(string1);
+  printf("strlen(string1) : %d\n", len);
+  len = strlen(string2);
+  printf("strlen(string2) : %d\n", len);
+  len = strlen(string3);
+  printf("strlen(string3) : %d\n", len);
+  /* 將字串1複製到字串3中 */
+  strcpy(string3, string1);
+  printf("strcpy( string3, string1) : %s\n", string3);
+  len = strlen(string3);
+  printf("strlen(string3) after copy of string1 into string3 : %d\n", len);
+  /* 比較 string1 和 string3 （這些應該是相同的）*/
+  if (strcmp(string1, string3) == 0)
+  printf("strings are the same\n");
+  /* 連接 string1 和 string2*/
+  strcat(string1, string2);
+  printf("strcat( string1, string2): %s\n", string1);
+  /* 連接後 string1 的總長度 */
+  len = strlen(string1);
+  printf("strlen(string1) after cat of string2 onto string1 : %d\n", len);
+  printf("String as predefined quoted chars: %s\n", borrow);
+  return 0;
+  }</pre>
+<p><img alt="" height="216" src="/images/螢幕擷取畫面 2023-12-31 180534.png" width="400"/></p>
 <p><video controls="controls" height="630" width="1008">
 <source src="/images/c_ex練習.mp4" type="video/mp4"/></video></p><h1>Brython</h1>
 <p><a href="https://en.wikipedia.org/wiki/Python_(programming_language)">https://en.wikipedia.org/wiki/Python_(programming_language)</a></p>

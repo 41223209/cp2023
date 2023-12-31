@@ -6,11 +6,12 @@
 #define HEIGHT 600
 #define SCALE 100
 
+//繪製電阻形狀
 void drawResistor(gdImagePtr im, int x1, int y, int width, int height) {
     int startX = x1 ;
     int endX = x1 + width ;
 
-    // 第一段直线向前走一段
+    // 第一段直線向前走一段
     gdImageLine(im, startX, y, startX + width / 4 , y, gdImageColorAllocate(im, 0, 0, 255));
 
     // 向上45度
@@ -42,7 +43,7 @@ void drawResistor(gdImagePtr im, int x1, int y, int width, int height) {
   gdImageColorAllocate(im, 0, 0, 255);
 
 
-    // 第一段直线向前走一段
+    // 第一段直線向前走一段
     gdImageLine(im, startX, y, startX + width / 4 , y, gdImageColorAllocate(im, 0, 0, 255));
 
     // 向上45度
@@ -68,18 +69,18 @@ void drawResistor(gdImagePtr im, int x1, int y, int width, int height) {
   gdImageColorAllocate(im, 0, 0, 255);
 
 
-    // 第一段直线向前走一段
+    // 第一段直線向前走一段
     gdImageLine(im, startX, y, startX + width / 4 , y, gdImageColorAllocate(im, 0, 0, 255));
 
     // 向上45度
     gdImageLine(im, startX + width / 4 , y, startX + width / 4 + height / 2 , y - height / 2, gdImageColorAllocate(im, 0, 0, 255));
 
-  // 向下90度
+    // 向下90度
     gdImageLine(im, startX + width / 4 + height / 2, y - height / 2 , startX + width / 4 + height / 2 + height , y + height / 2, gdImageColorAllocate(im, 0, 0, 255));
 
     // 向上90度
     gdImageLine(im, startX + width / 4 + height / 2 + height, y + height / 2, startX + width / 4 + height / 2 + 2 * height, y - height / 2, gdImageColorAllocate(im, 0, 0, 255));
-        // 向下90度
+    // 向下90度
     gdImageLine(im, startX + width / 4 + height / 2 + 2 * height , y - height / 2, startX + width / 4 + height / 2 + 3 * height , y + height / 2, gdImageColorAllocate(im, 0, 0, 255));
 
     // 向上45度
@@ -96,7 +97,7 @@ int main() {
     gdImagePtr im;
     FILE *outputFile;
 
-    // 创建图像对象
+    // 創建圖像物件
     im = gdImageCreateTrueColor(WIDTH, HEIGHT);
     if (im == NULL) {
         fprintf(stderr, "Error creating GD image.\n");
@@ -109,6 +110,7 @@ int main() {
         return 1;
     }
 
+    //配置顏色
     int black, white, red, blue, green;
 
     black = gdImageColorAllocate(im, 0, 0, 0);
@@ -118,21 +120,21 @@ int main() {
 green = gdImageColorAllocate(im, 0, 255, 0);
     gdImageFilledRectangle(im, 0, 0, WIDTH - 1, HEIGHT - 1, white);
 
-    // 绘制墙面
+    // 繪製牆面
     gdImageLine(im, SCALE, SCALE, SCALE, HEIGHT - SCALE, black);
     gdImageLine(im, WIDTH - SCALE, SCALE, WIDTH - SCALE, HEIGHT - SCALE, black);
 
-// 绘制彈簧
+   // 繪製彈簧(電阻)
     drawResistor(im, WIDTH / 3 + SCALE / 2, HEIGHT / 2, SCALE / 2, SCALE / 4);
 
-    // 绘制质量（方形）
+    // 繪製質量（方形）
     gdImageFilledRectangle(im, WIDTH / 3 - SCALE / 2, HEIGHT / 2 - SCALE / 2, WIDTH / 3 + SCALE / 2, HEIGHT / 2 + SCALE / 2, red);
     gdImageFilledRectangle(im, WIDTH * 2 / 3 - SCALE / 2, HEIGHT / 2 - SCALE / 2, WIDTH * 2 / 3 + SCALE / 2, HEIGHT / 2 + SCALE / 2, red);
 
   gdImageFilledRectangle(im, 100, HEIGHT +300, 700, HEIGHT /2 +49 , black);
 
 
-
+    //生成圖片
     gdImagePng(im, outputFile);
     fclose(outputFile);
     gdImageDestroy(im);
