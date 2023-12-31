@@ -3017,6 +3017,284 @@ default: printf(" not a, b, c ");
 }</pre>
 <p><img alt="" height="184" src="/images/螢幕擷取畫面 2023-12-31 145428.png" width="400"/></p>
 <p></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">int main()
+{
+/* 變數宣告 */
+int a;
+int A;
+int b, c;
+a = 1;
+A = 8;
+b = 2;
+c = A - a + b; /* 先計算 A - a + b, 將結果傳會給 c */
+printf( "%d", c ); /* 以 printf 印出 c 這個整數型態的變數 */
+return 0;
+}
+</pre>
+<p><img alt="" height="315" src="/images/螢幕擷取畫面 2023-12-31 150706.png" width="400"/></p>
+<p></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#define _CRT_SECURE_NO_WARNINGS
+#include&lt;stdio.h&gt;
+/* 示範一個嵌套的for循環 */
+main()
+{
+float this_is_a_number, total;
+int i, j;
+total = 0;
+/* 外層for循環循環10次 */
+for (i = 0;i &lt; 10;i++)
+{
+/* 內部 forloop 迴圈兩次 */
+for (j = 0;j &lt; 2;j++)
+{
+printf("Please enter a number:\n ");
+scanf("%f", &amp;this_is_a_number); /* 讀取數字 */
+total = total + this_is_a_number;
+}
+}
+printf("Total Sum is = %f\n", total);
+}</pre>
+<p><img alt="" height="696" src="/images/螢幕擷取畫面 2023-12-31 165825.png" width="219"/></p>
+<p></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#define _CRT_SECURE_NO_WARNINGS
+#include&lt;stdio.h&gt;
+/* 演示 do 循環 */
+main()
+{
+float this_is_a_number, total;
+int i;
+total = 0;
+i = 0;
+/* do 循環循環直到 i 的值達到 10 */
+do {
+printf("Please enter a number:\n ");
+scanf("%f", &amp;this_is_a_number);
+total = total + this_is_a_number;
+i++;
+}while( i &lt; 10);
+printf("Total Sum is = %f\n", total);
+}</pre>
+<p><img alt="" height="610" src="/images/螢幕擷取畫面 2023-12-31 170054.png" width="400"/></p>
+<p></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#define _CRT_SECURE_NO_WARNINGS
+#include &lt;stdio.h&gt;
+/* 開關操作範例 */
+int main()
+{
+int this_is_a_number;
+printf("Please enter an integer between 1 and 5:\n ");
+scanf("%d", &amp;this_is_a_number);
+switch (this_is_a_number)
+{
+case 1:
+printf("Case1: Value is: %d", this_is_a_number);
+break;
+case 2:
+printf("Case2: Value is: %d", this_is_a_number);
+break;
+case 3:
+printf("Case3: Value is: %d", this_is_a_number);
+break;
+case 4:
+printf("Case4: Value is: %d", this_is_a_number);
+break;
+  case 5:
+  printf("Case5: Value is: %d", this_is_a_number);
+  break;
+  default:
+  printf("Error Value is: %d", this_is_a_number); /* 號碼
+
+  輸入的數字不在 1 到 5 之間 */
+
+  }
+  return 0;
+  }</pre>
+<p><img alt="" height="180" src="/images/螢幕擷取畫面 2023-12-31 170340.png" width="400"/></p>
+<p></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#define _CRT_SECURE_NO_WARNINGS
+#include &lt;stdio.h&gt;
+/* 使用字元開關的範例*/
+int main()
+{
+char this_is_a_character;
+printf("Please enter character a,b,c,d or e:\n ");
+scanf("%c", &amp;this_is_a_character);
+switch (this_is_a_character)
+{
+case 'a':
+printf("a entered");
+break;
+case 'b':
+printf("b entered");
+break;
+  case 'c':
+  printf("c entered");
+  break;
+  case 'd':
+  printf("d entered");
+  break;
+  case 'e':
+  printf("e entered");
+  break;
+  default:
+  printf("Default ");
+  }
+  return 0;
+  }</pre>
+<p><img alt="" height="181" src="/images/螢幕擷取畫面 2023-12-31 173025.png" width="400"/></p>
+<p></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#define _CRT_SECURE_NO_WARNINGS
+#include&lt;stdio.h&gt;
+/* 顯示數組使用的程序 */
+int main()
+{
+int arr1[8];/* 定義一個 8 個整數的陣列*/
+int i;
+printf("enter 8 integer numbers\n");
+for (i = 0;i &lt; 8;i++)
+{
+scanf("%d", &amp;arr1[i]);/* 讀入 arr1[i]*/
+}
+printf("Your 8 numbers are \n");
+for (i = 0;i &lt; 8;i++)
+{
+printf("%d ", arr1[i]);
+}
+printf("\n");
+}</pre>
+<p><img alt="" height="279" src="/images/螢幕擷取畫面 2023-12-31 173945.png" width="400"/></p>
+<p></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#define _CRT_SECURE_NO_WARNINGS
+#include&lt;stdio.h&gt;
+/* 顯示字元數組使用的程序 */
+int main()
+{
+char arr2[10];/* 定義 10 個字元的數組 */
+int i;
+printf("enter 10 characters \n");
+for (i = 0;i &lt; 10;i++)
+{
+scanf("%c", &amp;arr2[i]);
+}
+printf("Your 10 characters are \n");
+for (i = 0;i &lt; 10;i++)
+{
+printf("%c ", arr2[i]);
+}
+printf("\n");
+}</pre>
+<p><img alt="" height="214" src="/images/螢幕擷取畫面 2023-12-31 174313.png" width="400"/></p>
+<p></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#define _CRT_SECURE_NO_WARNINGS
+#include&lt;stdio.h&gt;
+/* 二維數組測試範例*/
+int main()
+{
+int arr1[7][8];/* 二維陣列 */
+int i, j, k, l;
+printf("enter number of rows and columns (max 7 rows max 8) \n");
+scanf("%d %d", &amp;k, &amp;l);
+if (k &gt; 7 || l &gt; 8)
+{
+printf("error — max of 8 for rows or 7 for columns \n");
+}
+else
+{
+printf("enter array\n");
+for (i = 0;i &lt; k;i++)
+{for (j = 0;j &lt; l;j++)
+  {
+  scanf("%d", &amp;arr1[i][j]);
+  }
+  }
+  printf("Your array is \n");
+  for (i = 0;i &lt; k;i++)
+  {
+  for (j = 0;j &lt; l;j++)
+  {
+  printf("%d ", arr1[i][j]);
+  }
+  printf("\n");
+  }
+  }
+  }</pre>
+<p><img alt="" height="329" src="/images/螢幕擷取畫面 2023-12-31 175007.png" width="400"/></p>
+<p></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#define _CRT_SECURE_NO_WARNINGS
+#include&lt;stdio.h&gt;
+/* 二維數組測試範例*/
+int main(){
+int arr1[7][8];
+int i, j, k, l;
+printf("enter number of rows and columns (max 7 rows max 8) \n");
+scanf("%d %d", &amp;k, &amp;l);
+if (k &gt; 7 || l &gt; 8)
+{
+printf("error — max of 8 for rows or 7 for columns \n");
+}
+else
+{
+printf("enter array\n");
+for (i = 0;i &lt; k;i++)
+{
+for (j = 0;j &lt; l;j++)
+{
+scanf("%d", &amp;arr1[i][j]);
+}
+}
+printf("Your array is \n");
+for (i = 0;i &lt; k;i++)
+{
+for (j = 0;j &lt; l;j++)
+{
+printf("%d ", arr1[i][j]);
+}
+printf("\n");
+}
+}
+printf("first row of array\n");
+  for (j = 0;j &lt; l;j++)
+  {
+  printf("%d ", arr1[0][j]);
+  }
+  printf("\n");
+  }</pre>
+<p><img alt="" height="444" src="/images/螢幕擷取畫面 2023-12-31 175351.png" width="400"/></p>
+<p></p>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#define _CRT_SECURE_NO_WARNINGS
+#include &lt;stdio.h&gt;
+/* 這段程式碼示範了函數的作用 */
+/* 這裡的函數比較兩個數字並指出哪個較大 */
+/* 使用者輸入三個數字並被告知哪個比哪個大！*/
+void myfunction(int a,int b); /* d您的職能及其具體化
+參數 */
+int first , second, third;
+main()
+{
+printf( "Please enter first integer number: " );
+scanf( "%d", &amp;first );
+printf( "Please enter second integer number: " );
+scanf( "%d", &amp;second );
+printf( "Please enter third integer number: " );
+scanf( "%d", &amp;third );
+myfunction(first , second);
+myfunction(first , third);
+myfunction(second , third);
+}
+void myfunction(int a,int b)
+/* 該函數位於程式的 main{} 部分之外 */
+/* 函數只是比較兩個參數 a 和 b，並指出哪一個
+更偉大*/
+{
+if(a&gt;b)
+printf("%d is greater than %d\n", a,b);
+else if (a&lt;b)
+printf("%d is greater than %d\n", b,a);
+else
+printf("%d and %d are equal\n", a,b);
+}</pre>
+<p><img alt="" height="430" src="/images/螢幕擷取畫面 2023-12-31 175739.png" width="400"/></p>
+<p></p>
 <p></p>
 <p><video controls="controls" height="630" width="1008">
 <source src="/images/c_ex練習.mp4" type="video/mp4"/></video></p><h1>Brython</h1>
