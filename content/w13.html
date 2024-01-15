@@ -131,7 +131,7 @@ img.add_border {
                             <li><a href="./../blog/index.html">blog</a></li>
                         </ul>
                       </li>
-                     <li><a href='About.html'>About</a><li><a href='w5.html'>w5</a><li><a href='w6.html'>w6</a><li><a href='w7.html'>w7</a><li><a href='w11.html'>w11</a><li><a href='w12.html'>w12</a><li><a href='w13.html'>w13</a><li><a href='w15.html'>w15</a><li><a href='w16.html'>w16</a><li><a href='ANSIC.html'>ANSIC</a><li><a href='c_ex.html'>c_ex</a><li><a href='教學影片.html'>教學影片</a><li><a href='Brython.html'>Brython</a></li>
+                     <li><a href='About.html'>About</a><li><a href='w5.html'>w5</a><li><a href='w6.html'>w6</a><li><a href='w7.html'>w7</a><li><a href='w12.html'>w12</a><li><a href='w13.html'>w13</a><li><a href='w15.html'>w15</a><li><a href='w16.html'>w16</a><li><a href='ANSIC.html'>ANSIC</a><li><a href='c_ex.html'>c_ex</a><li><a href='教學影片.html'>教學影片</a><li><a href='倉儲與網站評分項目.html'>倉儲與網站評分項目</a><li><a href='Brython.html'>Brython</a></li>
                       </ul>
                 </nav>
               </div>
@@ -143,26 +143,26 @@ img.add_border {
           
         </header>
     <div id="tipue_search_content">w12 << <a href='w12.html'>Previous</a> <a href='w15.html'>Next</a> >> w15<br /><h1>w13</h1>
-<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">// 包含標準輸出入程式庫的標頭文件
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">// 為了使用print
 #include &lt;stdio.h&gt;
 
-// 主函式
+// main() { 為整個程式執行的開頭，加上int以回傳結果
 int main() {
-    // Open a file to write displacement and velocity data
+    // 輸出名為motion_data.txt的檔案
     FILE *outputFile = fopen("motion_data.txt", "w");
     if (!outputFile) {
         fprintf(stderr, "Failed to create data file.\n");
         return 1;
     }
 
-    // Simulate motion for 10 seconds and calculate displacement and velocity, while writing data to the file
-    double x = 0.2;  // Initial displacement
-    double v = 0.0;  // Initial velocity
-    double dt = 0.01; // Time step
-    double t = 0.0;  // Time
+    // 模擬運動10秒並計算位移和速度，同時將資料寫入文件
+    double x = 0.2;  // 初始位移
+    double v = 0.0;  // 初始速度
+    double dt = 0.01; // 時間步長
+    double t = 0.0;  // 時間
 
     while (t &lt;= 10.0) {
-        double acceleration = (-10.0 * x - 0.5 * v) / 1.0; // Modified system parameters here
+        double acceleration = (-10.0 * x - 0.5 * v) / 1.0; // 此處修改系統參數
         v += acceleration * dt;
         x += v * dt;
 
@@ -171,18 +171,18 @@ int main() {
         t += dt;
     }
 
-    // Close the data file
+    // 關閉資料檔案
     fclose(outputFile);
 
-    // Start a Gnuplot process using popen
     FILE *gnuplotPipe = popen("gnuplot -persistent", "w");
     if (!gnuplotPipe) {
         fprintf(stderr, "Failed to start Gnuplot.\n");
         return 1;
     }
 
-    // Use Gnuplot plotting commands, specify font and output as PNG
+    
     fprintf(gnuplotPipe, "set terminal pngcairo enhanced font 'default,10' size 800,400\n");
+    // 在images資料夾輸出名為motion_plot.png的檔案
     fprintf(gnuplotPipe, "set output './../images/motion_plot.png'\n");
     fprintf(gnuplotPipe, "set title 'Displacement and Velocity vs. Time'\n");
     fprintf(gnuplotPipe, "set xlabel 'Time (s)'\n");
@@ -190,14 +190,13 @@ int main() {
     fprintf(gnuplotPipe, "plot 'motion_data.txt' using 1:2 with lines lw 2 title 'Displacement', \
                              'motion_data.txt' using 1:3 with lines lw 2 title 'Velocity'\n");
 
-    // Close the Gnuplot process
+    // 關閉 Gnuplot 進程
     fprintf(gnuplotPipe, "exit\n");
     pclose(gnuplotPipe);
 
     return 0;
 }</pre>
-<p><img alt="" height="200" src="./../images/motion_plot.png" width="400"/></p>
-<br />w12 << <a href='w12.html'>Previous</a> <a href='w15.html'>Next</a> >> w15</div>
+<p><img alt="" height="200" src="./../images/motion_plot.png" width="400"/></p><br />w12 << <a href='w12.html'>Previous</a> <a href='w15.html'>Next</a> >> w15</div>
         
     <!-- footer -->
       <div class="container">

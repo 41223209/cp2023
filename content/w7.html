@@ -131,7 +131,7 @@ img.add_border {
                             <li><a href="./../blog/index.html">blog</a></li>
                         </ul>
                       </li>
-                     <li><a href='About.html'>About</a><li><a href='w5.html'>w5</a><li><a href='w6.html'>w6</a><li><a href='w7.html'>w7</a><li><a href='w11.html'>w11</a><li><a href='w12.html'>w12</a><li><a href='w13.html'>w13</a><li><a href='w15.html'>w15</a><li><a href='w16.html'>w16</a><li><a href='ANSIC.html'>ANSIC</a><li><a href='c_ex.html'>c_ex</a><li><a href='教學影片.html'>教學影片</a><li><a href='Brython.html'>Brython</a></li>
+                     <li><a href='About.html'>About</a><li><a href='w5.html'>w5</a><li><a href='w6.html'>w6</a><li><a href='w7.html'>w7</a><li><a href='w12.html'>w12</a><li><a href='w13.html'>w13</a><li><a href='w15.html'>w15</a><li><a href='w16.html'>w16</a><li><a href='ANSIC.html'>ANSIC</a><li><a href='c_ex.html'>c_ex</a><li><a href='教學影片.html'>教學影片</a><li><a href='倉儲與網站評分項目.html'>倉儲與網站評分項目</a><li><a href='Brython.html'>Brython</a></li>
                       </ul>
                 </nav>
               </div>
@@ -142,30 +142,38 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">w6 << <a href='w6.html'>Previous</a> <a href='w11.html'>Next</a> >> w11<br /><h1>w7</h1>
+    <div id="tipue_search_content">w6 << <a href='w6.html'>Previous</a> <a href='w12.html'>Next</a> >> w12<br /><h1>w7</h1>
 <p>日本國旗</p>
-<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">// 為了使用print
+#include &lt;stdio.h&gt;
+// 使用GD函式庫
 #include &lt;gd.h&gt;
-#include &lt;math.h&gt;
 
+// void因不會回傳任何值而用於紀錄所需的各項指令及參數
 void draw_japan_flag(gdImagePtr img);
 void draw_white_sun(gdImagePtr img, int center_x, int center_y, int sun_radius, int white, int red );
 
+// main() { 為整個程式執行的開頭，加上int以回傳結果
 int main() {
     // width 3: height 2
     int width = 1200;
     int height = 2 * width / 3;
 
+    // 創建一個新圖像
     gdImagePtr img = gdImageCreateTrueColor(width, height);
+    // 不調整顏色透明度
     gdImageAlphaBlending(img, 0);
 
     draw_japan_flag(img);
 
+    // 在images資料夾輸出名為japan_flag.png的檔案
     FILE *outputFile = fopen("./../images/japan_flag.png", "wb");
     if (outputFile == NULL) {
         fprintf(stderr, "Error opening the output file.\n");
         return 1;
     }
+
+    // 將檔案存為png格式
     gdImagePngEx(img, outputFile, 9);
     fclose(outputFile);
     gdImageDestroy(img);
@@ -180,7 +188,7 @@ void draw_japan_flag(gdImagePtr img) {
     int center_y =  0.5 * height;
     int sun_radius = 145 ;
 
-    // Colors for the flag
+    // 國旗顏色
     red = gdImageColorAllocate(img, 242, 0, 0); // Red color
     white = gdImageColorAllocate(img, 255, 255, 255); // White stripes
 
@@ -195,27 +203,36 @@ void draw_japan_flag(gdImagePtr img) {
 <p><img alt="" height="267" src="./../images/japan_flag.png" width="400"/></p>
 <p></p>
 <p>中國國旗</p>
-<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">// 為了使用print
+#include &lt;stdio.h&gt;
+// 使用GD函式庫
 #include &lt;gd.h&gt;
+//為了計算三角函數
 #include &lt;math.h&gt;
 
+// void因不會回傳任何值而用於紀錄所需的各項指令及參數
 void draw_chinese_flag(gdImagePtr img);
 
+// main() { 為整個程式執行的開頭，加上int以回傳結果
 int main() {
     int width = 300; // 國旗寬度
     int height = 200; // 國旗高度
-
+   
+    // 創建一個新圖像
     gdImagePtr im = gdImageCreateTrueColor(width, height);
+    // 不調整顏色透明度
     gdImageAlphaBlending(im, 0);
 
-    draw_chinese_flag(im);
+    draw_chinese_flag(img);
 
+    // 在images資料夾輸出名為proc_flag.png的檔案
     FILE *outputFile = fopen("./../images/proc_flag.png", "wb");
     if (outputFile == NULL) {
         fprintf(stderr, "打开输出文件时出错。\n");
         return 1;
     }
 
+    // 將檔案存為png格式
     gdImagePngEx(im, outputFile, 9);
     fclose(outputFile);
     gdImageDestroy(im);
@@ -223,7 +240,7 @@ int main() {
     return 0;
 }
 
-// 声明 draw_star 函数
+// void因不會回傳任何值而用於紀錄所需的各項指令及參數
 void draw_star(gdImagePtr img, int x, int y, int size, int color, double rotation_angle);
 
 void draw_chinese_flag(gdImagePtr img) {
@@ -263,7 +280,7 @@ void draw_chinese_flag(gdImagePtr img) {
 void draw_star(gdImagePtr img, int x, int y, int size, int color, double rotation_angle) {
     gdPoint points[10];
 
-    // 计算星形的五个外点和五个内点
+    // 計算星形的五个外點和五个内點
     double outer_radius = size / 2;
     double inner_radius = size / 6;
     double angle = M_PI / 5.0;
@@ -275,37 +292,42 @@ void draw_star(gdImagePtr img, int x, int y, int size, int color, double rotatio
         points[i].y = y + radius * sin(theta);
     }
 
-    // 使用 gdImageFilledPolygon 绘制星形
+    // 使用 gdImageFilledPolygon 繪製星形
     gdImageFilledPolygon(img, points, 10, color);
 }</pre>
 <p><img alt="" height="267" src="./../images/proc_flag.png" width="400"/></p>
 <p></p>
 <p>英國國旗</p>
-<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">// 為了使用print
+#include &lt;stdio.h&gt;
+// 使用GD函式庫
 #include &lt;gd.h&gt;
-#include &lt;math.h&gt;
 
+// void因不會回傳任何值而用於紀錄所需的各項指令及參數
 void draw_uk_flag(gdImagePtr img);
 void fillTriangle(gdImagePtr img, int x1, int y1, int x2, int y2, int x3, int y3, int color);
 
+// main() { 為整個程式執行的開頭，加上int以回傳結果
 int main() {
-    // 设置国旗的宽和高
+    // 設置國旗的寬和高
     int width = 1200;
     int height = width / 2;
 
-    // 创建图像
+    // 創建一個新圖像
     gdImagePtr img = gdImageCreateTrueColor(width, height);
+    // 不調整顏色透明度
     gdImageAlphaBlending(img, 0);
 
-    // 绘制英国国旗
+    // 繪製英國國旗
     draw_uk_flag(img);
 
-    // 将图像保存到文件
+    // 在images資料夾輸出名為uk_flag.png的檔案
     FILE *outputFile = fopen("./../images/uk_flag.png", "wb");
     if (outputFile == NULL) {
         fprintf(stderr, "打开输出文件时发生错误。\n");
         return 1;
     }
+    // 將檔案存為png格式
     gdImagePngEx(img, outputFile, 9);
     fclose(outputFile);
     gdImageDestroy(img);
@@ -321,7 +343,7 @@ void draw_uk_flag(gdImagePtr img) {
     int red, white, blue;
     red = gdImageColorAllocate(img, 204, 0, 0);       // 红色
     white = gdImageColorAllocate(img, 255, 255, 255); // 白色
-    blue = gdImageColorAllocate(img, 0, 0, 153);      // 蓝色
+    blue = gdImageColorAllocate(img, 0, 0, 153);      // 藍色
 
     gdImageFilledRectangle(img, 0, 0, width, height, blue);
 
@@ -333,7 +355,7 @@ void draw_uk_flag(gdImagePtr img) {
 
     int x1, y1, x2, y2, x3, y3;
 
-    // 绘制白色斜线
+    // 繪製白色斜線
     x1 = 0;
     y1 = 600;
     x2 = 1200;
@@ -351,7 +373,7 @@ void draw_uk_flag(gdImagePtr img) {
     gdImageSetThickness(img, line_thickness);
 
 
-    // 绘制红色斜线
+    // 繪製红色斜線
     x1 = 566;
     y1 = 300;
     x2 = 1166;
@@ -382,7 +404,7 @@ void draw_uk_flag(gdImagePtr img) {
 
   int x1, y1, x2, y2, x3, y3;
 
-  // 绘制  斜线
+  // 繪製斜線
   x1 = 0;
   y1 = 600;
   x2 = 1200;
@@ -406,7 +428,7 @@ void draw_uk_flag(gdImagePtr img) {
 
   }
 
-    // 绘制白色十字
+    // 繪製白色十字
     int cross_width = width / 32;
     int cross_arm_width = width / 32;
     int center_x = width / 2;
@@ -415,21 +437,23 @@ void draw_uk_flag(gdImagePtr img) {
     gdImageFilledRectangle(img, center_x + 2.7 * cross_width, 0, center_x - 2.7 * cross_width, height, white);
     gdImageFilledRectangle(img, 0, center_y + 2.7 * cross_arm_width, width, center_y - 2.7 * cross_arm_width, white);
 
-    // 绘制红色十字
+    // 繪製红色十字
     gdImageFilledRectangle(img, center_x + 1.5 * cross_width, 0, center_x - 1.5 * cross_width, height, red);
     gdImageFilledRectangle(img, 0, center_y + 1.5 * cross_arm_width, width, center_y - 1.5 * cross_arm_width, red);
 }</pre>
 <p><img alt="" height="200" src="./../images/uk_flag.png" width="400"/></p>
 <p></p>
 <p>韓國國旗</p>
-<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">// 為了使用print
+#include &lt;stdio.h&gt;
+// 使用GD函式庫
 #include &lt;gd.h&gt;
-#include &lt;math.h&gt;
 
 #define WIDTH 900
 #define HEIGHT 600
 #define FILENAME "south_korea_flag.png"
 
+// main() { 為整個程式執行的開頭，加上int以回傳結果
 int main() {
     gdImagePtr im;
     FILE *pngout;
@@ -789,7 +813,7 @@ if (outputFile == NULL) {
 <p style="text-align: left;"></p>
 <p style="text-align: left;"><video controls="controls" height="630" width="1008">
 <source src="./../images/可攜日本.mp4" type="video/mp4"/></video></p>
-<br />w6 << <a href='w6.html'>Previous</a> <a href='w11.html'>Next</a> >> w11</div>
+<br />w6 << <a href='w6.html'>Previous</a> <a href='w12.html'>Next</a> >> w12</div>
         
     <!-- footer -->
       <div class="container">

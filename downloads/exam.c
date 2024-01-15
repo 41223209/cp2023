@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <gd.h>
-#include <math.h>
 
 void draw_exam_flag(gdImagePtr img);
 void draw_white_sun(gdImagePtr img, int center_x, int center_y, int sun_radius, int white, int red, int blue);

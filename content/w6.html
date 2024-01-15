@@ -131,7 +131,7 @@ img.add_border {
                             <li><a href="./../blog/index.html">blog</a></li>
                         </ul>
                       </li>
-                     <li><a href='About.html'>About</a><li><a href='w5.html'>w5</a><li><a href='w6.html'>w6</a><li><a href='w7.html'>w7</a><li><a href='w11.html'>w11</a><li><a href='w12.html'>w12</a><li><a href='w13.html'>w13</a><li><a href='w15.html'>w15</a><li><a href='w16.html'>w16</a><li><a href='ANSIC.html'>ANSIC</a><li><a href='c_ex.html'>c_ex</a><li><a href='教學影片.html'>教學影片</a><li><a href='Brython.html'>Brython</a></li>
+                     <li><a href='About.html'>About</a><li><a href='w5.html'>w5</a><li><a href='w6.html'>w6</a><li><a href='w7.html'>w7</a><li><a href='w12.html'>w12</a><li><a href='w13.html'>w13</a><li><a href='w15.html'>w15</a><li><a href='w16.html'>w16</a><li><a href='ANSIC.html'>ANSIC</a><li><a href='c_ex.html'>c_ex</a><li><a href='教學影片.html'>教學影片</a><li><a href='倉儲與網站評分項目.html'>倉儲與網站評分項目</a><li><a href='Brython.html'>Brython</a></li>
                       </ul>
                 </nav>
               </div>
@@ -143,28 +143,37 @@ img.add_border {
           
         </header>
     <div id="tipue_search_content">w5 << <a href='w5.html'>Previous</a> <a href='w7.html'>Next</a> >> w7<br /><h1>w6</h1>
-<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">// 為了使用print
+#include &lt;stdio.h&gt;
+// 使用GD函式庫
 #include &lt;gd.h&gt;
+//為了計算三角函數
 #include &lt;math.h&gt;
 
+// void因不會回傳任何值而用於紀錄所需的各項指令及參數
 void draw_roc_flag(gdImagePtr img);
 void draw_white_sun(gdImagePtr img, int center_x, int center_y, int sun_radius, int white, int red, int blue);
 
+// main() { 為整個程式執行的開頭，加上int以回傳結果
 int main() {
 // width 3: height 2
 int width = 1200;
 int height = (int)(width*2.0 / 3.0);
 
+// 創建一個新圖像
 gdImagePtr img = gdImageCreateTrueColor(width, height);
+// 不調整顏色透明度
 gdImageAlphaBlending(img, 0);
 
 draw_roc_flag(img);
 
+// 輸出名為roc_flag.png的檔案
 FILE *outputFile = fopen("./roc_flag.png", "wb");
 if (outputFile == NULL) {
 fprintf(stderr, "Error opening the output file.\n");
 return 1;
 }
+// 將檔案存為png格式
 gdImagePngEx(img, outputFile, 9);
 fclose(outputFile);
 gdImageDestroy(img);
@@ -179,7 +188,7 @@ int center_x = (int)(width/4);
 int center_y = (int)(height/4);
 int sun_radius = (int)(width/8);
 
-// Colors for the flag
+// 設定顏色
 red = gdImageColorAllocate(img, 242, 0, 0); // Red color
 white = gdImageColorAllocate(img, 255, 255, 255); // White stripes
 blue = gdImageColorAllocate(img, 0, 41, 204); // Blue
@@ -228,37 +237,51 @@ gdImageFilledEllipse(img, center_x, center_y, sun_radius * 1.1, sun_radius * 1.1
 }
 </pre>
 <p><img alt="" height="267" src="./../images/roc_flag (1).png" width="400"/></p>
-<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">// 為了使用print
+#include &lt;stdio.h&gt;
+// 使用GD函式庫
 #include &lt;gd.h&gt;
+//為了計算三角函數
 #include &lt;math.h&gt;
 
+// void因不會回傳任何值而用於紀錄所需的各項指令及參數
 void draw_usa_flag(gdImagePtr img);
 void draw_star(gdImagePtr img, int x, int y, int size, int color, double rotation_angle);
 
+// main() { 為整個程式執行的開頭，加上int以回傳結果
 int main() {
 int width = 800;
 int height = (int)(width / 1.9);
+
+// 創建一個新圖像
 gdImagePtr img = gdImageCreateTrueColor(width, height);
+// 不調整顏色透明度
 gdImageAlphaBlending(img, 0);
+
 draw_usa_flag(img);
+
+// 在images資料夾輸出名為usa_flag.png的檔案
 FILE *outputFile = fopen("./../images/usa_flag.png", "wb");
 if (outputFile == NULL) {
 fprintf(stderr, "打开输出文件时出错。\n");
 return 1;
 }
+// 將檔案存為png格式
 gdImagePngEx(img, outputFile, 9);
 fclose(outputFile);
 gdImageDestroy(img);
 return 0;
 }
+
+
 void draw_usa_flag(gdImagePtr img) {
 int width = gdImageSX(img);
 int height = gdImageSY(img);
 int red, white, blue;
-// 国旗颜色
-red = gdImageColorAllocate(img, 178, 34, 52); // 红色条纹
-white = gdImageColorAllocate(img, 255, 255, 255); // 白色条纹
-blue = gdImageColorAllocate(img, 60, 59, 110); // 蓝色矩形
+// 國旗顏色
+red = gdImageColorAllocate(img, 178, 34, 52); // 紅色條紋
+white = gdImageColorAllocate(img, 255, 255, 255); // 白色條紋
+blue = gdImageColorAllocate(img, 60, 59, 110); // 藍色矩形
 int stripe_height = height / 13;
 int stripe_width = width;
 int star_size = (int)(0.0308 * height); // 星星大小
@@ -270,18 +293,18 @@ gdImageFilledRectangle(img, 0, y, stripe_width, y + stripe_height, white);
 }
 }
 gdImageFilledRectangle(img, 0, 0, width * 2 / 5, stripe_height * 7, blue);
-int star_spacing_x = (int)(0.129 * height); // 横向星星之间的间距
-int star_spacing_y = (int)(0.054 * height); // 纵向星星之间的间距
+int star_spacing_x = (int)(0.129 * height); // 横向星星之間的間距
+int star_spacing_y = (int)(0.054 * height); // 縱向星星之間的間距
 int star_start_x = (int)(0.125 * height); // 星星的起始X位置
 int star_start_y = (int)(0.0485 * height); // 星星的起始Y位置
 for (int row = 0; row &lt; 9; row++) {
 int starsPerRow = (row % 2 == 0) ? 6 : 5;
-// 计算2、4、6和8排星星的偏移量
+// 計算2、4、6和8排星星的偏移量
 int offset_x = (row % 2 == 0) ? star_spacing_x / -2 : 0;
 for (int star = 0; star &lt; starsPerRow; star++) {
 int x = star_start_x + star * star_spacing_x + offset_x;
-// 旋转角度（以弧度为单位）
-double rotation_angle = M_PI / 5; // 忘記多少度的旋转
+// 旋轉角度（以弧度為單位）
+double rotation_angle = M_PI / 5; 
 int y = star_start_y + row * star_spacing_y;
 draw_star(img, x, y, star_size, white, rotation_angle);
 }
@@ -295,78 +318,7 @@ int radius = (i % 2 == 0) ? size : size / 2;
 points[i].x = x + radius * cos(angle);
 points[i].y = y + radius * sin(angle);
 }
-// 用指定的颜色填充星星
-gdImageFilledPolygon(img, points, 10, color);
-}
-</pre>
-<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
-#include &lt;gd.h&gt;
-#include &lt;math.h&gt;
-
-void draw_usa_flag(gdImagePtr img);
-void draw_star(gdImagePtr img, int x, int y, int size, int color, double rotation_angle);
-
-int main() {
-int width = 800;
-int height = (int)(width / 1.9);
-gdImagePtr img = gdImageCreateTrueColor(width, height);
-gdImageAlphaBlending(img, 0);
-draw_usa_flag(img);
-FILE *outputFile = fopen("./../images/usa_flag.png", "wb");
-if (outputFile == NULL) {
-fprintf(stderr, "打开输出文件时出错。\n");
-return 1;
-}
-gdImagePngEx(img, outputFile, 9);
-fclose(outputFile);
-gdImageDestroy(img);
-return 0;
-}
-void draw_usa_flag(gdImagePtr img) {
-int width = gdImageSX(img);
-int height = gdImageSY(img);
-int red, white, blue;
-// 国旗颜色
-red = gdImageColorAllocate(img, 178, 34, 52); // 红色条纹
-white = gdImageColorAllocate(img, 255, 255, 255); // 白色条纹
-blue = gdImageColorAllocate(img, 60, 59, 110); // 蓝色矩形
-int stripe_height = height / 13;
-int stripe_width = width;
-int star_size = (int)(0.0308 * height); // 星星大小
-for (int y = 0; y &lt; height; y += stripe_height) {
-if (y / stripe_height % 2 == 0) {
-gdImageFilledRectangle(img, 0, y, stripe_width, y + stripe_height, red);
-} else {
-gdImageFilledRectangle(img, 0, y, stripe_width, y + stripe_height, white);
-}
-}
-gdImageFilledRectangle(img, 0, 0, width * 2 / 5, stripe_height * 7, blue);
-int star_spacing_x = (int)(0.129 * height); // 横向星星之间的间距
-int star_spacing_y = (int)(0.054 * height); // 纵向星星之间的间距
-int star_start_x = (int)(0.125 * height); // 星星的起始X位置
-int star_start_y = (int)(0.0485 * height); // 星星的起始Y位置
-for (int row = 0; row &lt; 9; row++) {
-int starsPerRow = (row % 2 == 0) ? 6 : 5;
-// 计算2、4、6和8排星星的偏移量
-int offset_x = (row % 2 == 0) ? star_spacing_x / -2 : 0;
-for (int star = 0; star &lt; starsPerRow; star++) {
-int x = star_start_x + star * star_spacing_x + offset_x;
-// 旋转角度（以弧度为单位）
-double rotation_angle = M_PI / 5; // 忘記多少度的旋转
-int y = star_start_y + row * star_spacing_y;
-draw_star(img, x, y, star_size, white, rotation_angle);
-}
-}
-}
-void draw_star(gdImagePtr img, int x, int y, int size, int color, double rotation_angle) {
-gdPoint points[10];
-for (int i = 0; i &lt; 10; i++) {
-double angle = M_PI / 2 + i * 2 * M_PI / 10 + rotation_angle;
-int radius = (i % 2 == 0) ? size : size / 2;
-points[i].x = x + radius * cos(angle);
-points[i].y = y + radius * sin(angle);
-}
-// 用指定的颜色填充星星
+// 用指定的顏色填充星星
 gdImageFilledPolygon(img, points, 10, color);
 }
 </pre>

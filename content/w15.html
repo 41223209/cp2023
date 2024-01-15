@@ -131,7 +131,7 @@ img.add_border {
                             <li><a href="./../blog/index.html">blog</a></li>
                         </ul>
                       </li>
-                     <li><a href='About.html'>About</a><li><a href='w5.html'>w5</a><li><a href='w6.html'>w6</a><li><a href='w7.html'>w7</a><li><a href='w11.html'>w11</a><li><a href='w12.html'>w12</a><li><a href='w13.html'>w13</a><li><a href='w15.html'>w15</a><li><a href='w16.html'>w16</a><li><a href='ANSIC.html'>ANSIC</a><li><a href='c_ex.html'>c_ex</a><li><a href='教學影片.html'>教學影片</a><li><a href='Brython.html'>Brython</a></li>
+                     <li><a href='About.html'>About</a><li><a href='w5.html'>w5</a><li><a href='w6.html'>w6</a><li><a href='w7.html'>w7</a><li><a href='w12.html'>w12</a><li><a href='w13.html'>w13</a><li><a href='w15.html'>w15</a><li><a href='w16.html'>w16</a><li><a href='ANSIC.html'>ANSIC</a><li><a href='c_ex.html'>c_ex</a><li><a href='教學影片.html'>教學影片</a><li><a href='倉儲與網站評分項目.html'>倉儲與網站評分項目</a><li><a href='Brython.html'>Brython</a></li>
                       </ul>
                 </nav>
               </div>
@@ -144,28 +144,35 @@ img.add_border {
         </header>
     <div id="tipue_search_content">w13 << <a href='w13.html'>Previous</a> <a href='w16.html'>Next</a> >> w16<br /><h1>w15</h1>
 <p>畫線程式</p>
-<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">// 為了使用print
+#include &lt;stdio.h&gt;
+// 使用GD函式庫
 #include &lt;gd.h&gt;
-#include &lt;math.h&gt;
 
+// void因不會回傳任何值而用於紀錄所需的各項指令及參數
 void draw_exam_flag(gdImagePtr img);
 void draw_white_sun(gdImagePtr img, int center_x, int center_y, int sun_radius, int white, int red, int blue);
 
+// main() { 為整個程式執行的開頭，加上int以回傳結果
 int main() {
     // width 3: height 2
     int width = 1200;
     int height = (int)(width*2.0 / 3.0);
 
+    // 創建一個新圖像
     gdImagePtr img = gdImageCreateTrueColor(width, height);
+    // 不調整顏色透明度
     gdImageAlphaBlending(img, 0);
 
     draw_exam_flag(img);
 
+    // 輸出名為exam_flag.png的檔案
     FILE *outputFile = fopen("./exam_flag.png", "wb");
     if (outputFile == NULL) {
         fprintf(stderr, "Error opening the output file.\n");
         return 1;
     }
+    // 將檔案存為png格式
     gdImagePngEx(img, outputFile, 9);
     fclose(outputFile);
     gdImageDestroy(img);
@@ -181,7 +188,7 @@ void draw_exam_flag(gdImagePtr img) {
     int sun_radius = (int)(width/8);
     int lineColor = gdImageColorAllocate(img, 255, 255, 255);
 
-  // 畫一條線
+  // 設定線的端點
     int x1 = 429;
     int y1 = 125;
     int x2 = 170;
@@ -197,7 +204,7 @@ void draw_exam_flag(gdImagePtr img) {
     int x6 = 429;
     int y6 = 125;
   
-    // Colors for the flag
+    // 設定顏色
     red = gdImageColorAllocate(img, 242, 0, 0); // Red color
     white = gdImageColorAllocate(img, 255, 255, 255); // White stripes
     blue = gdImageColorAllocate(img, 0, 41, 204); // Blue
@@ -208,13 +215,14 @@ void draw_exam_flag(gdImagePtr img) {
     // 繪製藍色矩形區域
     gdImageFilledRectangle(img, 0, 0, (int)(width/2.0), (int)(height/2.0), blue);
 
+    // 繪製線條
     gdImageLine(img, x1, y1, x2, y2, lineColor);
 
     gdImageLine(img, x3, y3, x4, y4, lineColor);
 
     gdImageLine(img, x5, y5, x6, y6, lineColor);
 
-    return 0;
+    return 0; // 表成功結束
 }
 </pre>
 <p><img alt="" height="267" src="./../images/exam_flag.png" width="400"/></p>

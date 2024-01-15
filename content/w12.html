@@ -131,7 +131,7 @@ img.add_border {
                             <li><a href="./../blog/index.html">blog</a></li>
                         </ul>
                       </li>
-                     <li><a href='About.html'>About</a><li><a href='w5.html'>w5</a><li><a href='w6.html'>w6</a><li><a href='w7.html'>w7</a><li><a href='w11.html'>w11</a><li><a href='w12.html'>w12</a><li><a href='w13.html'>w13</a><li><a href='w15.html'>w15</a><li><a href='w16.html'>w16</a><li><a href='ANSIC.html'>ANSIC</a><li><a href='c_ex.html'>c_ex</a><li><a href='教學影片.html'>教學影片</a><li><a href='Brython.html'>Brython</a></li>
+                     <li><a href='About.html'>About</a><li><a href='w5.html'>w5</a><li><a href='w6.html'>w6</a><li><a href='w7.html'>w7</a><li><a href='w12.html'>w12</a><li><a href='w13.html'>w13</a><li><a href='w15.html'>w15</a><li><a href='w16.html'>w16</a><li><a href='ANSIC.html'>ANSIC</a><li><a href='c_ex.html'>c_ex</a><li><a href='教學影片.html'>教學影片</a><li><a href='倉儲與網站評分項目.html'>倉儲與網站評分項目</a><li><a href='Brython.html'>Brython</a></li>
                       </ul>
                 </nav>
               </div>
@@ -142,18 +142,23 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">w11 << <a href='w11.html'>Previous</a> <a href='w13.html'>Next</a> >> w13<br /><h1>w12</h1>
-<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">#include &lt;stdio.h&gt;
+    <div id="tipue_search_content">w7 << <a href='w7.html'>Previous</a> <a href='w13.html'>Next</a> >> w13<br /><h1>w12</h1>
+<pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">// 為了使用print
+#include &lt;stdio.h&gt;
+// 使用GD函式庫
 #include &lt;gd.h&gt;
-#include &lt;math.h&gt;
 
+// void因不會回傳任何值而用於紀錄所需的各項指令及參數
 int main() {
     int width = 800;
     int height = 600;
 
+    // 創建一個新圖像
     gdImagePtr img = gdImageCreateTrueColor(width, height);
+    // 不調整顏色透明度
     gdImageAlphaBlending(img, 0);
 
+    // 輸出名為hellogd.png的檔案
     FILE *outputFile = fopen("hellogd.png", "wb");
     if (outputFile == NULL) {
 
@@ -200,13 +205,13 @@ return 1;
     points2[3].y = points2[2].y;
     gdImageFilledPolygon(img, points2, 4, red);
 
+    // 將檔案存為png格式
     gdImagePngEx(img, outputFile, 9);
     fclose(outputFile);
     gdImageDestroy(img);
     return 0;
 }</pre>
-<p><img alt="" height="300" src="./../images/hellogd.png" width="400"/></p>
-<br />w11 << <a href='w11.html'>Previous</a> <a href='w13.html'>Next</a> >> w13</div>
+<p><img alt="" height="300" src="./../images/hellogd.png" width="400"/></p><br />w7 << <a href='w7.html'>Previous</a> <a href='w13.html'>Next</a> >> w13</div>
         
     <!-- footer -->
       <div class="container">
